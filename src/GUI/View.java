@@ -9,23 +9,20 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import jpp.qrcode.ErrorCorrection;
-import jpp.qrcode.Localtests;
 import jpp.qrcode.QRCode;
 import jpp.qrcode.encode.Encoder;
 
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileWriter;
+import java.net.URL;
 import java.util.*;
 
 
 public class View extends Application {
     private StackPane mainPain = new StackPane();
-
+    private URL savedUrl = getClass().getResource("saved.png");
     private HBox hbox = new HBox();
 
 
@@ -33,8 +30,7 @@ public class View extends Application {
     public void start(Stage primaryStage) throws Exception {
 
 
-
-        Image image = new Image(new FileInputStream("C:\\Users\\s353177\\IdeaProjects\\QR-Code\\src\\Junit_Tests\\saved.png"));
+        Image image = new Image(new FileInputStream(savedUrl.getPath()));
         ImageView imageView = new ImageView(image);
         imageView.setPreserveRatio(true);
         imageView.setFitHeight(177);
@@ -60,10 +56,10 @@ public class View extends Application {
             String text = textField.getText();
             if (!text.isEmpty()) {
                 QRCode qrCode = Encoder.createFromString(text, ErrorCorrection.LOW);
-                Localtests.createImage(qrCode.data(), 20);
+                Helper.createImage(qrCode.data(), 20,savedUrl.getPath());
                 Image updated = null;
                 try {
-                    updated = new Image(new FileInputStream("C:\\Users\\s353177\\IdeaProjects\\QR-Code\\src\\Junit_Tests\\saved.png"));
+                    updated = new Image(new FileInputStream(savedUrl.getPath()));
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }
@@ -134,7 +130,7 @@ public class View extends Application {
     }
 
     private void showQrCode(ImageView imageView,VBox vbox) throws FileNotFoundException {
-        Image updated = new Image(new FileInputStream("C:\\Users\\s353177\\IdeaProjects\\QR-Code\\src\\Junit_Tests\\saved.png"));
+        Image updated = new Image(new FileInputStream(savedUrl.getPath()));
         imageView.setImage(updated);
         vbox.getChildren().clear();
         vbox.getChildren().add(new Label("                        "));
@@ -143,7 +139,7 @@ public class View extends Application {
 
     private void createQrCode(String text) {
         QRCode qrCode = Encoder.createFromString(text, ErrorCorrection.LOW);
-        Localtests.createImage(qrCode.data(), 20);
+        Helper.createImage(qrCode.data(), 20,savedUrl.getPath());
     }
 
 }

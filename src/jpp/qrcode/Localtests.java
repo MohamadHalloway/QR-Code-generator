@@ -1,19 +1,12 @@
 package jpp.qrcode;
 
-import jpp.qrcode.decode.DataDecoder;
+import GUI.Helper;
 import jpp.qrcode.decode.DataDestructurer;
 import jpp.qrcode.decode.DataExtractor;
-import jpp.qrcode.decode.Decoder;
 import jpp.qrcode.encode.*;
-import jpp.qrcode.io.TextReader;
-import jpp.qrcode.io.TextWriter;
 import jpp.qrcode.reedsolomon.ReedSolomonException;
 
-import javax.imageio.ImageIO;
-import java.awt.*;
-import java.awt.image.BufferedImage;
 import java.io.*;
-import java.util.Arrays;
 
 public class Localtests {
     public static void main(String[] args) throws IOException, ReedSolomonException {
@@ -192,7 +185,7 @@ public class Localtests {
 
 
         System.out.println(qrCode);
-        createImage(boo,1);
+//        Helper.createImage(boo,1);
 
         //Test DataExtractor
         byte[] information = DataExtractor.extract(qrCode.data(), ReservedModulesMask.forVersion(qrCode.version()), qrCode.version().totalByteCount());
@@ -304,34 +297,6 @@ public class Localtests {
 //        System.out.println(qrCode.matrixToString());
 //        System.out.println(Helper.intQRCodeZeichnen(Helper.booleanArray2integerArray(res)));
     }
-
-
-    public static void createImage(boolean[][] boo, int scale){
-        BufferedImage image = new BufferedImage(boo.length * scale, boo[0].length * scale, BufferedImage.TYPE_INT_ARGB);
-        for (int i = 0; i < boo.length; i++) {
-            for (int j = 0; j < boo[i].length; j++) {
-                for (int k = 0; k < scale; k++) {
-                    for (int l = 0; l < scale; l++) {
-                        if (boo[i][j]) {
-                            image.setRGB((j * scale) + l, (i * scale) + k, Color.BLACK.getRGB());
-                        } else {
-                            image.setRGB((j * scale) + l, (i * scale) + k, Color.WHITE.getRGB());
-                        }
-                    }
-                }
-            }
-        }
-
-        try {
-            // retrieve image
-            File outputfile = new File("C:\\Users\\s353177\\IdeaProjects\\QR-Code\\src\\Junit_Tests\\saved.png");
-            ImageIO.write(image, "png", outputfile);
-        } catch (IOException e) {
-            System.err.println("Scheiße");
-        }
-    }
-
-
 
 
     private static byte[] testdestructure(byte[] data, ErrorCorrectionInformation correctionInformation) throws ReedSolomonException {

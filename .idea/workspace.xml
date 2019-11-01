@@ -6,9 +6,9 @@
       <change afterPath="$PROJECT_DIR$/src/GUI/Controller.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/GUI/Helper.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/GUI/View.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/GUI/saved.png" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/GUI/style.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Junit_Tests" afterDir="true" />
-      <change afterPath="$PROJECT_DIR$/src/Junit_Tests/saved.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/JunitTests" afterDir="true" />
       <change afterPath="$PROJECT_DIR$/src/jpp/qrcode/Localtests.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -66,6 +66,9 @@
     <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.excludes" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveMembersDialog.RECENTS_KEY">
+      <recent name="GUI.Helper" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\s353177\IdeaProjects\QR-Code\src\GUI" />
       <recent name="C:\Users\s353177\IdeaProjects\QR-Code\src\Images" />
@@ -223,7 +226,7 @@
       <workItem from="1572535354682" duration="1721000" />
       <workItem from="1572558212464" duration="2712000" />
       <workItem from="1572599783637" duration="5771000" />
-      <workItem from="1572621253063" duration="5151000" />
+      <workItem from="1572621253063" duration="6498000" />
     </task>
     <task id="LOCAL-00038" summary="test illegal decodeToString?">
       <created>1551462415625</created>
@@ -620,7 +623,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/GUI/View.java</url>
-          <line>59</line>
+          <line>55</line>
           <option name="timeStamp" value="98" />
         </line-breakpoint>
       </breakpoints>
