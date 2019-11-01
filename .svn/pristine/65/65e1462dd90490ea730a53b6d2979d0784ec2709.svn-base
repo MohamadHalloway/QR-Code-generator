@@ -1,0 +1,29 @@
+package jpp.qrcode.decode;
+
+import jpp.qrcode.MaskApplier;
+import jpp.qrcode.QRCode;
+import jpp.qrcode.ReservedModulesMask;
+
+public class Decoder {
+	public static String decodeToString(QRCode qrCode) {
+		boolean[][] matrix = qrCode.data();
+		QRCode kopie = new QRCode(qrCode.data(),qrCode.version(),qrCode.maskPattern(),qrCode.errorCorrection());
+//		//Kopie
+//		boolean[][] mask = new boolean[qrCode.data().length][qrCode.data().length];
+//		for (int i = 0; i < mask.length; i++) {
+//			for (int j = 0; j < mask.length; j++) {
+//				mask[i][j] = matrix[i][j];
+//			}
+//		}
+		ReservedModulesMask reservedModulesMask = ReservedModulesMask.forVersion(kopie.version());
+
+		MaskApplier.applyTo(kopie.data(),kopie.maskPattern().maskFunction(),reservedModulesMask);
+
+		byte[] extrahiert = DataExtractor.extract(kopie.data(),reservedModulesMask,kopie.version().totalByteCount());
+
+		DataDestructurer.destructure(extrahiert,kopie.version().correctionInformationFor(kopie.errorCorrection()));
+
+		String result = DataDecoder.decodeToString(extrahiert,kopie.version(),kopie.errorCorrection());
+		return result;
+	}
+}

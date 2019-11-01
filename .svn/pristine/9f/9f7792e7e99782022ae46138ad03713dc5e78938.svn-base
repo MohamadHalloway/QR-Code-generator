@@ -1,0 +1,31 @@
+package jpp.qrcode.encode;
+
+import jpp.qrcode.ErrorCorrection;
+import jpp.qrcode.MaskPattern;
+import jpp.qrcode.ReservedModulesMask;
+
+public class MaskSelector {
+	public static int calculatePenaltySameColored(boolean[][] data) {
+		throw new IllegalStateException();
+	}
+	
+	public static int calculatePenalty2x2(boolean[][] arr) {
+		throw new IllegalStateException();
+	}
+	
+	public static int calculatePenaltyBlackWhite(boolean[][] arr) {
+		throw new IllegalStateException();
+	}
+	
+	public static int calculatePenaltyPattern(boolean[][] array) {
+		throw new IllegalStateException();
+	}
+	
+	public static int calculatePenaltyFor(boolean[][] data) {
+		throw new IllegalStateException();
+	}
+	
+	public static MaskPattern maskWithBestMask(boolean[][] data, ErrorCorrection correction, ReservedModulesMask modulesMask) {
+		throw new IllegalStateException();
+	}
+}

@@ -1,0 +1,105 @@
+package jpp.qrcode.encode;
+
+import jpp.qrcode.*;
+
+public class MaskSelector {
+	public static void placeFormatInformation(boolean[][] data, int formatInformation){
+			int index = 0;
+			//Format obenLinks
+			boolean[] format1 = new boolean[15];
+			for (int i = 0; i < 9; i++) {
+				if (i == 6){
+					continue;
+				}
+				data[i][8] = (formatInformation & (1 << index)) != 0;
+				index++;
+			}
+			for (int j = 7; j >= 0; j--) {
+				if (j == 6){
+					continue;
+				}
+				data[8][j] = (formatInformation & (1 << index)) != 0;
+				index++;
+			}
+
+			index = 0;
+			//Format verteilt
+			boolean[] format2 = new boolean[15];
+			for (int j = data.length - 1; j >= data.length - 8 ; j--) {
+				data[8][j] = (formatInformation & (1 << index)) != 0;
+				index++;
+			}
+			for (int i = data.length - 7; i <= data.length - 1; i++) {
+				data[i][8] = (formatInformation & (1 << index)) != 0;
+				index++;
+			}
+	}
+	public static int calculatePenaltySameColored(boolean[][] data) {
+		int result = 0;
+		boolean last = true;
+		int n = 0;
+
+		//Zeilen
+		for (int i = 0; i < data.length; i++) {
+			n = 0;
+			last = data[i][0];
+			for (int j = 1; j < data.length; j++) {
+				if (data[i][j] == last){
+					n++;
+				}else{
+					n = 0;
+				}
+				if (n == 5) {
+					result += 3;
+					continue;
+				}
+				if (n > 5){
+					result++;
+				}
+			}
+		}
+		//Spalten
+		for (int j = 0; j < data.length; j++) {
+			n = 0;
+			last = data[0][j];
+			for (int i = 1; i < data.length; i++) {
+				if (data[i][j] == last){
+					n++;
+				}else{
+					n = 0;
+				}
+				if (n == 5) {
+					result += 3;
+					continue;
+				}
+				if (n > 5){
+					result++;
+				}
+			}
+		}
+
+
+
+		return result;
+	}
+	
+	public static int calculatePenalty2x2(boolean[][] arr) {
+		throw new IllegalStateException();
+	}
+	
+	public static int calculatePenaltyBlackWhite(boolean[][] arr) {
+		throw new IllegalStateException();
+	}
+	
+	public static int calculatePenaltyPattern(boolean[][] array) {
+		throw new IllegalStateException();
+	}
+	
+	public static int calculatePenaltyFor(boolean[][] data) {
+		throw new IllegalStateException();
+	}
+	
+	public static MaskPattern maskWithBestMask(boolean[][] data, ErrorCorrection correction, ReservedModulesMask modulesMask) {
+		throw new IllegalStateException();
+	}
+}

@@ -1,0 +1,19 @@
+package jpp.qrcode.decode;
+
+import jpp.qrcode.DataBlock;
+import jpp.qrcode.ErrorCorrectionInformation;
+import jpp.qrcode.reedsolomon.ReedSolomonException;
+
+public class DataDestructurer {
+	public static byte[] join(DataBlock[] blocks, ErrorCorrectionInformation errorCorrectionInformation) {
+		throw new IllegalStateException();
+	}
+	
+	public static DataBlock[] deinterleave(byte[] data, ErrorCorrectionInformation errorCorrectionInformation) {
+		throw new IllegalStateException();
+	}
+	
+	public static byte[] destructure(byte[] data, ErrorCorrectionInformation ecBlocks) throws ReedSolomonException {
+		throw new IllegalStateException();
+	}
+}

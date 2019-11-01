@@ -1,0 +1,678 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="e5ba1313-2d9b-4ca1-8669-0459f17b7585" name="Default Changelist" comment="End Abgabe">
+      <change afterPath="$PROJECT_DIR$/src/GUI" afterDir="true" />
+      <change afterPath="$PROJECT_DIR$/src/GUI/Controller.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/GUI/Helper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/GUI/View.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/GUI/style.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Junit_Tests" afterDir="true" />
+      <change afterPath="$PROJECT_DIR$/src/Junit_Tests/saved.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/jpp/qrcode/Localtests.java" afterDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Enum" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectId" id="1PyWzIwR7jh5BzKQ4rk5MlAUYtk" />
+  <component name="PropertiesComponent">
+    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_flatOrder0" value="0" />
+    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_flatOrder1" value="1" />
+    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_flatOrder2" value="2" />
+    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_flatOrder3" value="3" />
+    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_flatOrder4" value="4" />
+    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_flatOrder5" value="5" />
+    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_flatWidth0" value="118" />
+    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_flatWidth1" value="118" />
+    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_flatWidth2" value="118" />
+    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_flatWidth3" value="118" />
+    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_flatWidth4" value="118" />
+    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_flatWidth5" value="117" />
+    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_treeOrder0" value="0" />
+    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_treeOrder1" value="1" />
+    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_treeOrder2" value="2" />
+    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_treeOrder3" value="3" />
+    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_treeOrder4" value="4" />
+    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_treeOrder5" value="5" />
+    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_treeWidth0" value="118" />
+    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_treeWidth1" value="118" />
+    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_treeWidth2" value="118" />
+    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_treeWidth3" value="118" />
+    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_treeWidth4" value="118" />
+    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_treeWidth5" value="117" />
+    <property name="ToolWindowRun.ShowToolbar" value="false" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1554299176277" />
+    <property name="last_opened_file_path" value="C:/Program Files/Java/javafx-sdk-11.0.2/javafx-sdk-11.0.2/lib" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
+    <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.excludes" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\s353177\IdeaProjects\QR-Code\src\GUI" />
+      <recent name="C:\Users\s353177\IdeaProjects\QR-Code\src\Images" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Application.View">
+    <configuration name="DataEncoder" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="jpp.qrcode.encode.DataEncoder" />
+      <module name="QR-Code" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="jpp.qrcode.encode.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Localtests" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="jpp.qrcode.Localtests" />
+      <module name="QR-Code" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="jpp.qrcode.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="View" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="GUI.View" />
+      <module name="QR-Code" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="GUI.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.View" />
+        <item itemvalue="Application.Localtests" />
+        <item itemvalue="Application.DataEncoder" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration" cleanupOnStartRun="true">
+    <configuration>C:\Users\s353177\AppData\Roaming\Subversion</configuration>
+    <supportedVersion>125</supportedVersion>
+  </component>
+  <component name="SvnFileUrlMappingImpl">
+    <option name="myMappingRoots">
+      <list>
+        <SvnCopyRootSimple>
+          <option name="myVcsRoot" value="C:\Users\s353177\IdeaProjects\QR-Code" />
+          <option name="myCopyRoot" value="C:\Users\s353177\IdeaProjects\QR-Code" />
+        </SvnCopyRootSimple>
+      </list>
+    </option>
+    <option name="myMoreRealMappingRoots">
+      <list>
+        <SvnCopyRootSimple>
+          <option name="myVcsRoot" value="C:\Users\s353177\IdeaProjects\QR-Code" />
+          <option name="myCopyRoot" value="C:\Users\s353177\IdeaProjects\QR-Code" />
+        </SvnCopyRootSimple>
+      </list>
+    </option>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="e5ba1313-2d9b-4ca1-8669-0459f17b7585" name="Default Changelist" comment="" />
+      <created>1551023626433</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1551023626433</updated>
+      <workItem from="1551023627737" duration="3420000" />
+      <workItem from="1551090071619" duration="7797000" />
+      <workItem from="1551103653475" duration="28820000" />
+      <workItem from="1551170260430" duration="20874000" />
+      <workItem from="1551197325029" duration="9383000" />
+      <workItem from="1551210422441" duration="3682000" />
+      <workItem from="1551259138042" duration="11023000" />
+      <workItem from="1551287322329" duration="2831000" />
+      <workItem from="1551296932338" duration="10280000" />
+      <workItem from="1551312119194" duration="5733000" />
+      <workItem from="1551345725503" duration="30949000" />
+      <workItem from="1551395716302" duration="157000" />
+      <workItem from="1551397822382" duration="1440000" />
+      <workItem from="1551435638607" duration="4154000" />
+      <workItem from="1551450608366" duration="18430000" />
+      <workItem from="1551476168032" duration="10044000" />
+      <workItem from="1551513891229" duration="11687000" />
+      <workItem from="1551542483215" duration="17436000" />
+      <workItem from="1551564804676" duration="932000" />
+      <workItem from="1551603395859" duration="6298000" />
+      <workItem from="1551633241678" duration="6614000" />
+      <workItem from="1551639949275" duration="3301000" />
+      <workItem from="1551648427298" duration="1801000" />
+      <workItem from="1551699626732" duration="709000" />
+      <workItem from="1551712289859" duration="108000" />
+      <workItem from="1551804180564" duration="1397000" />
+      <workItem from="1551822415869" duration="1516000" />
+      <workItem from="1551865851289" duration="181000" />
+      <workItem from="1552069316650" duration="1386000" />
+      <workItem from="1552078741624" duration="609000" />
+      <workItem from="1552156376960" duration="181000" />
+      <workItem from="1552494035660" duration="632000" />
+      <workItem from="1552822683254" duration="2193000" />
+      <workItem from="1552921198834" duration="647000" />
+      <workItem from="1552927149283" duration="704000" />
+      <workItem from="1553027472024" duration="706000" />
+      <workItem from="1553072240051" duration="17000" />
+      <workItem from="1553097532993" duration="149000" />
+      <workItem from="1553273713698" duration="908000" />
+      <workItem from="1553535932076" duration="1840000" />
+      <workItem from="1553703879769" duration="1269000" />
+      <workItem from="1553707177242" duration="67000" />
+      <workItem from="1553877082492" duration="2607000" />
+      <workItem from="1554227342802" duration="812000" />
+      <workItem from="1554239335503" duration="1227000" />
+      <workItem from="1554287147469" duration="5552000" />
+      <workItem from="1554299266401" duration="1028000" />
+      <workItem from="1554300321160" duration="30000" />
+      <workItem from="1566847080942" duration="1438000" />
+      <workItem from="1566949628343" duration="85000" />
+      <workItem from="1566990195414" duration="100000" />
+      <workItem from="1567022464191" duration="623000" />
+      <workItem from="1567540113391" duration="377000" />
+      <workItem from="1572357786078" duration="131000" />
+      <workItem from="1572357922104" duration="2334000" />
+      <workItem from="1572438106405" duration="2957000" />
+      <workItem from="1572444019753" duration="3273000" />
+      <workItem from="1572448302062" duration="227000" />
+      <workItem from="1572456129553" duration="1566000" />
+      <workItem from="1572469006315" duration="4667000" />
+      <workItem from="1572535354682" duration="1721000" />
+      <workItem from="1572558212464" duration="2712000" />
+      <workItem from="1572599783637" duration="5771000" />
+      <workItem from="1572621253063" duration="5151000" />
+    </task>
+    <task id="LOCAL-00038" summary="test illegal decodeToString?">
+      <created>1551462415625</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1551462415625</updated>
+    </task>
+    <task id="LOCAL-00039" summary="test illegal decodeToString?">
+      <created>1551462853456</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1551462853456</updated>
+    </task>
+    <task id="LOCAL-00040" summary="test illegal decodeToString?">
+      <created>1551462936185</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1551462936185</updated>
+    </task>
+    <task id="LOCAL-00041" summary="test illegal decodeToString?">
+      <created>1551463013872</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1551463013872</updated>
+    </task>
+    <task id="LOCAL-00042" summary="test illegal decodeToString?">
+      <created>1551465078035</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1551465078035</updated>
+    </task>
+    <task id="LOCAL-00043" summary="decodeToString?">
+      <created>1551465820562</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1551465820563</updated>
+    </task>
+    <task id="LOCAL-00044" summary="decodeToString?">
+      <created>1551467239629</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1551467239629</updated>
+    </task>
+    <task id="LOCAL-00045" summary="Decoder?">
+      <created>1551469727320</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1551469727320</updated>
+    </task>
+    <task id="LOCAL-00046" summary="Decoder?">
+      <created>1551470248725</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1551470248725</updated>
+    </task>
+    <task id="LOCAL-00047" summary="Decoder?">
+      <created>1551470558715</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1551470558715</updated>
+    </task>
+    <task id="LOCAL-00048" summary="Decoder?">
+      <created>1551477095442</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1551477095442</updated>
+    </task>
+    <task id="LOCAL-00049" summary="Decoder?">
+      <created>1551481347975</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1551481347975</updated>
+    </task>
+    <task id="LOCAL-00050" summary="Decoder?">
+      <created>1551482549970</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1551482549971</updated>
+    </task>
+    <task id="LOCAL-00051" summary="DataEncoder?">
+      <created>1551482867144</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1551482867144</updated>
+    </task>
+    <task id="LOCAL-00052" summary="DataEncoder?">
+      <created>1551483262001</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1551483262001</updated>
+    </task>
+    <task id="LOCAL-00053" summary="DataEncoder?">
+      <created>1551483688937</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1551483688937</updated>
+    </task>
+    <task id="LOCAL-00054" summary="DataEncoder?">
+      <created>1551483988333</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1551483988333</updated>
+    </task>
+    <task id="LOCAL-00055" summary="Datastructurer?">
+      <created>1551486269201</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1551486269201</updated>
+    </task>
+    <task id="LOCAL-00056" summary="Datastructurer?">
+      <created>1551516068273</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1551516068275</updated>
+    </task>
+    <task id="LOCAL-00057" summary="PatternPlacer?">
+      <created>1551518655948</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1551518655949</updated>
+    </task>
+    <task id="LOCAL-00058" summary="DataInserter?">
+      <created>1551519087357</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1551519087357</updated>
+    </task>
+    <task id="LOCAL-00059" summary="DataInserter?">
+      <created>1551519503545</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1551519503545</updated>
+    </task>
+    <task id="LOCAL-00060" summary="DataInserter?">
+      <created>1551522034424</created>
+      <option name="number" value="00060" />
+      <option name="presentableId" value="LOCAL-00060" />
+      <option name="project" value="LOCAL" />
+      <updated>1551522034424</updated>
+    </task>
+    <task id="LOCAL-00061" summary="DataInserter?">
+      <created>1551542525663</created>
+      <option name="number" value="00061" />
+      <option name="presentableId" value="LOCAL-00061" />
+      <option name="project" value="LOCAL" />
+      <updated>1551542525679</updated>
+    </task>
+    <task id="LOCAL-00062" summary="MaskSelector?">
+      <created>1551545943594</created>
+      <option name="number" value="00062" />
+      <option name="presentableId" value="LOCAL-00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1551545943594</updated>
+    </task>
+    <task id="LOCAL-00063" summary="calculatePenalty2x2?">
+      <created>1551549606986</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1551549606986</updated>
+    </task>
+    <task id="LOCAL-00064" summary="MaskSelector?">
+      <created>1551552017661</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL-00064" />
+      <option name="project" value="LOCAL" />
+      <updated>1551552017661</updated>
+    </task>
+    <task id="LOCAL-00065" summary="Encoder?">
+      <created>1551555324521</created>
+      <option name="number" value="00065" />
+      <option name="presentableId" value="LOCAL-00065" />
+      <option name="project" value="LOCAL" />
+      <updated>1551555324521</updated>
+    </task>
+    <task id="LOCAL-00066" summary="Encoder?">
+      <created>1551559049189</created>
+      <option name="number" value="00066" />
+      <option name="presentableId" value="LOCAL-00066" />
+      <option name="project" value="LOCAL" />
+      <updated>1551559049189</updated>
+    </task>
+    <task id="LOCAL-00067" summary="Encoder?">
+      <created>1551560219718</created>
+      <option name="number" value="00067" />
+      <option name="presentableId" value="LOCAL-00067" />
+      <option name="project" value="LOCAL" />
+      <updated>1551560219718</updated>
+    </task>
+    <task id="LOCAL-00068" summary="TextWriter?">
+      <created>1551605146645</created>
+      <option name="number" value="00068" />
+      <option name="presentableId" value="LOCAL-00068" />
+      <option name="project" value="LOCAL" />
+      <updated>1551605146646</updated>
+    </task>
+    <task id="LOCAL-00069" summary="TextWriter?">
+      <created>1551605332009</created>
+      <option name="number" value="00069" />
+      <option name="presentableId" value="LOCAL-00069" />
+      <option name="project" value="LOCAL" />
+      <updated>1551605332009</updated>
+    </task>
+    <task id="LOCAL-00070" summary="calculatePenaltyPattern?">
+      <created>1551606666257</created>
+      <option name="number" value="00070" />
+      <option name="presentableId" value="LOCAL-00070" />
+      <option name="project" value="LOCAL" />
+      <updated>1551606666257</updated>
+    </task>
+    <task id="LOCAL-00071" summary="MaskSelector?">
+      <created>1551633558056</created>
+      <option name="number" value="00071" />
+      <option name="presentableId" value="LOCAL-00071" />
+      <option name="project" value="LOCAL" />
+      <updated>1551633558056</updated>
+    </task>
+    <task id="LOCAL-00072" summary="MaskSelector?">
+      <created>1551634647771</created>
+      <option name="number" value="00072" />
+      <option name="presentableId" value="LOCAL-00072" />
+      <option name="project" value="LOCAL" />
+      <updated>1551634647771</updated>
+    </task>
+    <task id="LOCAL-00073" summary="MaskSelector?">
+      <created>1551636884517</created>
+      <option name="number" value="00073" />
+      <option name="presentableId" value="LOCAL-00073" />
+      <option name="project" value="LOCAL" />
+      <updated>1551636884517</updated>
+    </task>
+    <task id="LOCAL-00074" summary="MaskSelector?">
+      <created>1551637392548</created>
+      <option name="number" value="00074" />
+      <option name="presentableId" value="LOCAL-00074" />
+      <option name="project" value="LOCAL" />
+      <updated>1551637392548</updated>
+    </task>
+    <task id="LOCAL-00075" summary="MaskSelector?">
+      <created>1551637969448</created>
+      <option name="number" value="00075" />
+      <option name="presentableId" value="LOCAL-00075" />
+      <option name="project" value="LOCAL" />
+      <updated>1551637969448</updated>
+    </task>
+    <task id="LOCAL-00076" summary="MaskSelector?">
+      <created>1551641638511</created>
+      <option name="number" value="00076" />
+      <option name="presentableId" value="LOCAL-00076" />
+      <option name="project" value="LOCAL" />
+      <updated>1551641638513</updated>
+    </task>
+    <task id="LOCAL-00077" summary="MaskSelector?">
+      <created>1551648892497</created>
+      <option name="number" value="00077" />
+      <option name="presentableId" value="LOCAL-00077" />
+      <option name="project" value="LOCAL" />
+      <updated>1551648892499</updated>
+    </task>
+    <task id="LOCAL-00078" summary="Encoder?">
+      <created>1551649196767</created>
+      <option name="number" value="00078" />
+      <option name="presentableId" value="LOCAL-00078" />
+      <option name="project" value="LOCAL" />
+      <updated>1551649196767</updated>
+    </task>
+    <task id="LOCAL-00079" summary="End Abgabe">
+      <created>1553703937871</created>
+      <option name="number" value="00079" />
+      <option name="presentableId" value="LOCAL-00079" />
+      <option name="project" value="LOCAL" />
+      <updated>1553703937871</updated>
+    </task>
+    <task id="LOCAL-00080" summary="End Abgabe">
+      <created>1553704014540</created>
+      <option name="number" value="00080" />
+      <option name="presentableId" value="LOCAL-00080" />
+      <option name="project" value="LOCAL" />
+      <updated>1553704014540</updated>
+    </task>
+    <task id="LOCAL-00081" summary="End Abgabe">
+      <created>1554239476441</created>
+      <option name="number" value="00081" />
+      <option name="presentableId" value="LOCAL-00081" />
+      <option name="project" value="LOCAL" />
+      <updated>1554239476441</updated>
+    </task>
+    <task id="LOCAL-00082" summary="End Abgabe">
+      <created>1554239790288</created>
+      <option name="number" value="00082" />
+      <option name="presentableId" value="LOCAL-00082" />
+      <option name="project" value="LOCAL" />
+      <updated>1554239790288</updated>
+    </task>
+    <task id="LOCAL-00083" summary="End Abgabe">
+      <created>1554289027685</created>
+      <option name="number" value="00083" />
+      <option name="presentableId" value="LOCAL-00083" />
+      <option name="project" value="LOCAL" />
+      <updated>1554289027686</updated>
+    </task>
+    <task id="LOCAL-00084" summary="End Abgabe">
+      <created>1554290133126</created>
+      <option name="number" value="00084" />
+      <option name="presentableId" value="LOCAL-00084" />
+      <option name="project" value="LOCAL" />
+      <updated>1554290133126</updated>
+    </task>
+    <task id="LOCAL-00085" summary="End Abgabe">
+      <created>1554290222278</created>
+      <option name="number" value="00085" />
+      <option name="presentableId" value="LOCAL-00085" />
+      <option name="project" value="LOCAL" />
+      <updated>1554290222278</updated>
+    </task>
+    <task id="LOCAL-00086" summary="End Abgabe">
+      <created>1554292590210</created>
+      <option name="number" value="00086" />
+      <option name="presentableId" value="LOCAL-00086" />
+      <option name="project" value="LOCAL" />
+      <updated>1554292590210</updated>
+    </task>
+    <option name="localTasksCounter" value="87" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Only Aufgabe1" />
+    <MESSAGE value="Only Aufgabe1\\Encoding?" />
+    <MESSAGE value="Only Aufgabe1\\ReservedModulesMask?" />
+    <MESSAGE value="Only Aufgabe1\\Seperators auskommentiert?" />
+    <MESSAGE value="Only Aufgabe1\\Orientations auskommentiert?" />
+    <MESSAGE value="Only Aufgabe1\\Alignments auskommentiert?" />
+    <MESSAGE value="Only Aufgabe1\\DataExtractor?" />
+    <MESSAGE value="DataPositions?" />
+    <MESSAGE value="DataExtractor?" />
+    <MESSAGE value="DataDecoder?" />
+    <MESSAGE value="DataDestructure?" />
+    <MESSAGE value="readCharacterCount?" />
+    <MESSAGE value="test illegal decodeToString?" />
+    <MESSAGE value="decodeToString?" />
+    <MESSAGE value="Decoder?" />
+    <MESSAGE value="DataEncoder?" />
+    <MESSAGE value="Datastructurer?" />
+    <MESSAGE value="PatternPlacer?" />
+    <MESSAGE value="DataInserter?" />
+    <MESSAGE value="calculatePenalty2x2?" />
+    <MESSAGE value="TextWriter?" />
+    <MESSAGE value="calculatePenaltyPattern?" />
+    <MESSAGE value="MaskSelector?" />
+    <MESSAGE value="Encoder?" />
+    <MESSAGE value="End Abgabe" />
+    <option name="LAST_COMMIT_MESSAGE" value="End Abgabe" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/jpp/qrcode/encode/MaskSelector.java</url>
+          <line>184</line>
+          <properties class="jpp.qrcode.encode.MaskSelector" method="maskWithBestMask">
+            <option name="EMULATED" value="true" />
+          </properties>
+          <option name="timeStamp" value="97" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/jpp/qrcode/io/TextWriter.java</url>
+          <line>25</line>
+          <option name="timeStamp" value="87" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/GUI/View.java</url>
+          <line>59</line>
+          <option name="timeStamp" value="98" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="debuggerHistoryManager">
+    <expressions id="breakpointCondition">
+      <expression>
+        <expression-string>gefunden</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>i == 21</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>i == 17</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>white</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>dataPositions.i() == 31 &amp;&amp; dataPositions.j() == 32</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>dataPositions.i() ==</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>test</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>j == 10</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>j == 6</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+    </expressions>
+  </component>
+</project>

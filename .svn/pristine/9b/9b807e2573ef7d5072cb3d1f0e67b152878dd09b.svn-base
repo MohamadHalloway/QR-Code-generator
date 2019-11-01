@@ -1,0 +1,370 @@
+package jpp.qrcode;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
+
+public class QRCode {
+
+	public static boolean[] orientation_mask = {true,true, true, true, true, true, true,
+										  true,false,false,false,false,false,true,
+										  true,false,true ,true ,true ,false,true,
+										  true,false,true ,true ,true ,false,true,
+										  true,false,true ,true ,true ,false,true,
+										  true,false,false,false,false,false,true,
+										  true,true, true, true, true, true, true};
+
+	public static boolean[] alignment_mask = {true,true ,true ,true ,true,
+										true,false,false,false,true,
+										true,false,true,false ,true,
+										true,false,false,false,true,
+										true,true ,true ,true ,true};
+
+	private boolean[][] matrix;
+	private Version version;
+	private MaskPattern pattern;
+	private ErrorCorrection correction;
+
+	public QRCode(boolean[][] matrix, Version version, MaskPattern pattern, ErrorCorrection correction) {
+		this.matrix = matrix;
+		this.version = version;
+		this.pattern = pattern;
+		this.correction = correction;
+//		throw new IllegalStateException();
+	}
+
+	public Version version() {
+		return version;
+	}
+
+	public boolean[][] data() {
+		return matrix;
+	}
+
+	public MaskPattern maskPattern() {
+		return pattern;
+	}
+
+	public ErrorCorrection errorCorrection() {
+		return  correction;
+	}
+
+	public String matrixToString() {
+		StringBuilder result = new StringBuilder();
+		for (int i = 0; i < matrix.length; i++) {
+			for (int j = 0; j < matrix[i].length ; j++) {
+				if (matrix[i][j]){
+					result.append((char) 0x2588 + "" + (char) 0x2588);
+				}
+				else {
+					result.append((char) 0x2591 + "" + (char) 0x2591);
+				}
+			}
+			if (i == matrix.length - 1){
+				break;
+			}
+			result.append("\n");
+		}
+		return result.toString();
+	}
+
+	public static QRCode createValidatedFromBooleans(boolean[][] data) throws InvalidQRCodeException {
+		//if is Null     or     empty
+		if (data == null || data.length == 0){
+			throw new InvalidQRCodeException("data is Null or empty");
+		}
+
+		//if quadratic
+		for (int i = 0; i < data.length; i++) {
+			if (data.length != data[i].length){
+				throw new InvalidQRCodeException("data is not quadratic");
+			}
+		}
+
+		//Die Größe passt zu einer validen QR-Code Version?
+		boolean valid_version_number = false;
+		for (int i = 21; i < 178; i += 4) {		//check if its one of the valid versions
+			if (data.length == i){
+				valid_version_number = true;
+				break;
+			}
+		}
+		if(!valid_version_number ){
+			throw new InvalidQRCodeException("invalid version");
+		}
+
+		//Alle oben genannten Bedingungen für einen validen QR-Code sind erfüllt.
+		check_Orientations(data);
+
+		check_Separators(data);
+
+		check_Timing(data);
+
+		//Dark Module
+		if (data[data.length-8][8] == false) {
+			throw new InvalidQRCodeException("invalid dark module");
+		}
+		check_Alignments(data);
+
+		//check FORMAT
+      	FormatInformation formatInformation = check_format(data);
+		if (formatInformation == null){
+			throw new InvalidQRCodeException("invalid format");
+		}
+
+		//Version-Information Blöcke ist valid?
+		Version version = check_version_blocks(data);
+		if(version == null){
+			throw new InvalidQRCodeException("invalid version");
+		}
+
+
+		//if you reach this line it means "Valid QR-Code"
+		return new QRCode(data,version,formatInformation.maskPattern(),formatInformation.errorCorrection());
+
+	}
+
+	public static FormatInformation check_format(boolean[][] data) {
+		int index = 0;
+		//Format obenLinks
+		boolean[] format1 = new boolean[15];
+		for (int i = 0; i < 9; i++) {
+			if (i == 6){
+				continue;
+			}
+			format1[index] = data[i][8];
+			index++;
+		}
+		for (int j = 7; j >= 0; j--) {
+			if (j == 6){
+				continue;
+			}
+			format1[index] = data[8][j];
+			index++;
+		}
+		int result = Helper.booleanArray2Integer(format1);
+//		System.out.println("Format_ObenLinks: " + result);
+		if (FormatInformation.fromBits(result) != null){
+			return FormatInformation.fromBits(result);
+		}
+
+		index = 0;
+		//Format verteilt
+		boolean[] format2 = new boolean[15];
+		for (int j = data.length - 1; j >= data.length - 8 ; j--) {
+			format2[index] = data[8][j];
+			index++;
+		}
+		for (int i = data.length - 7; i <= data.length - 1; i++) {
+			format2[index] = data[i][8];
+			index++;
+		}
+		result = Helper.booleanArray2Integer(format2);
+//		System.out.println("Format_verteilt: " + result);
+		if (FormatInformation.fromBits(result) == null){
+			return FormatInformation.fromBits(result);
+		}
+
+		return null;
+	}
+
+	public static boolean check_Separators(boolean[][] data) {
+
+		//obenLinks
+		for (int i = 0; i <= 7; i++) {
+			if (data[i][7]){
+				throw new InvalidQRCodeException("invalid Separator");
+			}
+		}
+		for (int j = 0; j < 7; j++) {
+			if (data[7][j]){
+				throw new InvalidQRCodeException("invalid Separator");
+			}
+		}
+
+
+		//obenRechts
+		for (int i = 0; i < 7; i++) {
+			if (data[i][data.length - 8]){
+				throw new InvalidQRCodeException("invalid Separator");
+			}
+		}
+		for (int j = data.length - 8; j < data.length; j++) {
+			if (data[7][j]){
+				throw new InvalidQRCodeException("invalid Separator");
+			}
+		}
+
+		//untenLinks
+		for (int i = data.length - 8; i < data.length; i++) {
+			if (data[i][7]){
+				throw new InvalidQRCodeException("invalid Separator");
+			}
+		}
+		for (int j = 0; j < 7; j++) {
+			if (data[data.length - 8][j]){
+				throw new InvalidQRCodeException("invalid Separator");
+			}
+
+		}
+
+
+		return true;
+	}
+
+	public static boolean check_Orientations(boolean[][] data) {
+		int index = 0;
+		//obenLinks
+		for (int i = 0; i < 7; i++) {
+			for (int j = 0; j < 7; j++) {
+				if (data[i][j] != orientation_mask[index]){
+					throw new InvalidQRCodeException("invalid Orientation");
+				}
+				index++;
+			}
+		}
+		index = 0;
+		//obenRechts
+		for (int i = 0; i < 7; i++) {
+			for (int j = data.length - 7; j < data.length; j++) {
+				if (data[i][j] != orientation_mask[index]){
+					throw new InvalidQRCodeException("invalid Orientation");
+				}
+				index++;
+			}
+		}
+
+		index = 0;
+		//untenLinks
+		for (int i = data.length - 7; i < data.length; i++) {
+			for (int j = 0; j < 7; j++) {
+				if (data[i][j] != orientation_mask[index]){
+					throw new InvalidQRCodeException("invalid Orientation");
+				}
+				index++;
+			}
+		}
+
+		return true;
+	}
+
+	public static Version check_version_blocks(boolean[][] data) {  //todo gehe davon aus dass es geht (Testen war schwierig zu implementieren)
+		if (data.length < ((6 * 4) + 17)) {  //if Version > 6
+			return Version.fromNumber((data.length - 17) / 4);
+		}
+
+
+//		//check_version in Block1
+//		boolean[] version_Block1 = new boolean[18];
+//		int index = 0;
+//
+//		for (int i = 0; i <= 5; i++) {
+//			for (int j = data.length - 11; j < data.length - 8; j++) {
+//				version_Block1[index] = data[i][j];
+//				index++;
+//			}
+//		}
+//		int block1 = Helper.booleanArray2Integer(version_Block1);
+//
+//		//todo zum Testen
+////		System.out.println( "Block1" + Arrays.toString(version_Block1));
+////		System.out.println("Block1 in int = " + block1);
+//		//todo end
+//
+//		if (VersionInformation.fromBits(block1) != null){
+//			return VersionInformation.fromBits(block1);
+//		}
+
+		int n = 1;
+		while(n < 3){
+			boolean[] version_Block = new boolean[18];
+			int index = 0;
+			for (int i = 0; i <= 5; i++) {
+				for (int j = data.length - 11; j < data.length - 8; j++) {
+					switch (n){
+						case 1:
+							version_Block[index] = data[i][j];
+							break;
+						case 2:
+							version_Block[index] = data[j][i];
+							break;
+					}
+					index++;
+				}
+			}
+			int block_int = Helper.booleanArray2Integer(version_Block);
+
+			//todo zum Testen
+			//		System.out.println( "Block2" + Arrays.toString(version_Block2));
+			//		System.out.println("Block2 in int = " + block2);
+			//todo end
+			if (VersionInformation.fromBits(block_int) != null){
+				return VersionInformation.fromBits(block_int);
+			}
+			n++;
+		}
+		return null;
+	}
+
+	public static boolean check_Timing(boolean[][] data){
+		boolean timing = true; //starts always in Black
+
+		//Vertical Timing
+		for (int i = 8; i < data.length - 8; i++) {
+			if (data[i][6] != timing){
+				throw new InvalidQRCodeException("invalid timing");
+			}
+			timing = !timing;
+		}
+
+		timing = true;
+		//Horizonal Timing
+		for (int j = 8; j < data.length - 8; j++) {
+			if (data[6][j] != timing){
+				throw new InvalidQRCodeException("invalid timing");
+			}
+			timing = !timing;
+		}
+		return true;
+	}
+
+	public static boolean check_Alignments(boolean[][] data){
+		Version version = Version.fromNumber((data.length-17) / 4);
+		int[] alligments = version.alignmentPositions();
+
+		for (int i: alligments){
+			for (int j: alligments){
+				if ((i == 6 && j == 6) || (i == 6 && j == alligments[alligments.length -1]) || (i == alligments[alligments.length-1] && j == 6)){
+					continue;
+				}
+				if (!check_Alignment_Address(data,i,j)){
+					throw new InvalidQRCodeException("invalid alignment");
+				}
+
+			}
+		}
+		return true;
+	}
+
+	public static boolean check_Alignment_Address(boolean[][] data,int y,int x) {
+		boolean result = true;
+		int new_i = y - 2;
+		int new_j = x - 2;
+		int index = 0;
+		for (int i = new_i; i < y + 3; i++) {
+			for (int j = new_j; j < x + 3; j++) {
+				if (data[i][j] != alignment_mask[index]){
+					return false;
+				}
+				index++;
+			}
+		}
+		return  result;
+	}
+
+	@Override
+	public String toString() {
+		return matrixToString();
+	}
+}

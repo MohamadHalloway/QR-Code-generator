@@ -1,0 +1,25 @@
+package jpp.qrcode.encode;
+
+import jpp.qrcode.Version;
+
+public class PatternPlacer {
+	public static void placeOrientation(boolean[][] res, Version version) {
+		throw new IllegalStateException();
+	}
+	
+	public static void placeTiming(boolean[][] res, Version version) {
+		throw new IllegalStateException();
+	}
+	
+	public static void placeAlignment(boolean[][] res, Version version) {
+		throw new IllegalStateException();
+	}
+	
+	public static void placeVersionInformation(boolean[][] data, int versionInformation) {
+		throw new IllegalStateException();
+	}
+	
+	public static boolean[][] createBlankForVersion(Version version) {
+		throw new IllegalStateException();
+	}
+}

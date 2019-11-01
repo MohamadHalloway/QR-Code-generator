@@ -1,0 +1,18 @@
+package jpp.qrcode.encode;
+
+import jpp.qrcode.DataBlock;
+import jpp.qrcode.ErrorCorrectionInformation;
+
+public class DataStructurer {
+	public static DataBlock[] split(byte[] data, ErrorCorrectionInformation errorCorrectionInformation) {
+		throw new IllegalStateException();
+	}
+	
+	public static byte[] interleave(DataBlock[] blocks, ErrorCorrectionInformation ecBlocks) {
+		throw new IllegalStateException();
+	}
+	
+	public static byte[] structure(byte[] data, ErrorCorrectionInformation ecBlocks) {
+		throw new IllegalStateException();
+	}
+}

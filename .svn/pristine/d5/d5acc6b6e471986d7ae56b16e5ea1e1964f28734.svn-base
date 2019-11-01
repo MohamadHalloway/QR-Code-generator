@@ -1,0 +1,23 @@
+package jpp.qrcode.io;
+
+import jpp.qrcode.QRCode;
+import jpp.qrcode.Version;
+
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+
+public class TextWriter {
+	public static void write(OutputStream stream, boolean[][] data) throws IOException {
+		StringBuilder stringBuilder = new StringBuilder();
+		QRCode qrCode = QRCode.createValidatedFromBooleans(data);
+
+		stringBuilder.append("# " + qrCode.version().toString() + "\n");
+		stringBuilder.append("# ErrorCorrection " + qrCode.errorCorrection() + "\n");
+		stringBuilder.append("# MaskPattern " + qrCode.maskPattern() + "\n");
+		stringBuilder.append("#" + "\n"); 		//todo decode the QR-Code
+
+		String result = stringBuilder.toString();
+		stream.write(result.getBytes());
+	}
+}

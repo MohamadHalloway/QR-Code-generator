@@ -1,0 +1,46 @@
+package jpp.qrcode.decode;
+
+import jpp.qrcode.*;
+
+public class DataDecoder {
+	public static Encoding readEncoding(byte[] bytes) {
+		int bits = (bytes[0] >> 4)& 0x0F ;
+		Encoding result = Encoding.fromBits(bits);
+		return result;
+	}
+	
+	public static int readCharacterCount(byte[] bytes, int count) {
+		int bits = bytes[0] & 0xF;
+		if (count == 8){
+			bits = (bits << 4) | ((bytes[1] >> 4) & 0xF);
+		}
+		else {
+			int first =((bits << 4)& 0xF0) | ((bytes[1] >> 4) & 0xF);
+			int second = ((bytes[1] << 4 & 0xF0) | ((bytes[2] >> 4) & 0xF));
+			int third = ((first << 8) | second) ;
+			bits = third & 0xFFFF;
+		}
+		return bits;
+	}
+	
+	public static String decodeToString(byte[] bytes, Version version, ErrorCorrection errorCorrection) {
+		int minus = (version.number() > 10) ? 3 : 2;
+
+		if (version.correctionInformationFor(errorCorrection).totalDataByteCount() != bytes.length || bytes.length == 0){
+        throw new IllegalArgumentException("die Byteanzahl passt nicht zur Datenbyteanzahl dieser Version mit dem gegebenen Fehlerkorrekturlevel");
+		}
+		int cci = (version.number() > 10) ? 16 : 8;
+		if (!readEncoding(bytes).equals(Encoding.BYTE) || readCharacterCount(bytes,cci) > bytes.length - minus){
+			throw new QRDecodeException("Encoding is not BYTE");
+		}
+
+		int index = cci == 8 ? 1 : 2;
+		cci = readCharacterCount(bytes,cci);
+		byte[] result = new byte[cci];
+		for (int i = 0; i < cci; i++) {
+			result[i] = (byte) (((bytes[index] << 4) & 0xF0) |((bytes[index+1] >> 4) & 0xF));
+			index++;
+		}
+		return new String(result);
+	}
+}

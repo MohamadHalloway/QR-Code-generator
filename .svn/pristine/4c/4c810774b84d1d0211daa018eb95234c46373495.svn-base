@@ -1,0 +1,17 @@
+package jpp.qrcode.encode;
+
+import jpp.qrcode.Version;
+
+public final class DataEncoderResult {
+	public DataEncoderResult(byte[] bytes, Version version) {
+		throw new IllegalStateException();
+	}
+	
+	public byte[] bytes() {
+		throw new IllegalStateException();
+	}
+	
+	public Version version() {
+		throw new IllegalStateException();
+	}
+}

@@ -1,0 +1,10 @@
+package jpp.qrcode.encode;
+
+import jpp.qrcode.DataPositions;
+import jpp.qrcode.ReservedModulesMask;
+
+public class DataInserter {
+	public static void insert(boolean[][] target, ReservedModulesMask mask, byte[] data) {
+		throw new IllegalStateException();
+	}
+}

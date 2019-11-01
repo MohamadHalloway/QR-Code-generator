@@ -1,0 +1,19 @@
+package jpp.qrcode;
+
+public class DataPositions {
+	public DataPositions(ReservedModulesMask mask) {
+		throw new IllegalStateException();
+	}
+	
+	public int i() {
+		throw new IllegalStateException();
+	}
+	
+	public int j() {
+		throw new IllegalStateException();
+	}
+	
+	public boolean next() {
+		throw new IllegalStateException();
+	}
+}

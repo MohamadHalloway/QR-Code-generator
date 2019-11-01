@@ -1,0 +1,10 @@
+package jpp.qrcode.io;
+
+import java.io.IOException;
+import java.io.InputStream;
+
+public class TextReader {
+	public static boolean[][] read(InputStream in) throws IOException {
+		throw new IllegalStateException();
+	}
+}

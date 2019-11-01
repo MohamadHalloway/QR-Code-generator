@@ -1,0 +1,19 @@
+package jpp.qrcode.decode;
+
+import jpp.qrcode.Encoding;
+import jpp.qrcode.ErrorCorrection;
+import jpp.qrcode.Version;
+
+public class DataDecoder {
+	public static Encoding readEncoding(byte[] bytes) {
+		throw new IllegalStateException();
+	}
+	
+	public static int readCharacterCount(byte[] bytes, int count) {
+		throw new IllegalStateException();
+	}
+	
+	public static String decodeToString(byte[] bytes, Version version, ErrorCorrection errorCorrection) {
+		throw new IllegalStateException();
+	}
+}

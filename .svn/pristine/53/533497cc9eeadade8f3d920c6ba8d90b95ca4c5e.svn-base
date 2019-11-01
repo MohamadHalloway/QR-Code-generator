@@ -1,0 +1,10 @@
+package jpp.qrcode.encode;
+
+import jpp.qrcode.ErrorCorrection;
+import jpp.qrcode.QRCode;
+
+public class Encoder {
+	public static QRCode createFromString(String msg, ErrorCorrection correction) {
+		throw new IllegalStateException();
+	}
+}

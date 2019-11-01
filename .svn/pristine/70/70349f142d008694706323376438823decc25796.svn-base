@@ -1,0 +1,115 @@
+package jpp.qrcode.encode;
+
+import jpp.qrcode.*;
+
+public class PatternPlacer {
+	public static void placeOrientation(boolean[][] res, Version version) {
+		int index = 0;
+		//obenLinks
+		for (int i = 0; i < 7; i++) {
+			for (int j = 0; j < 7; j++) {
+				res[i][j] = QRCode.orientation_mask[index];
+				index++;
+			}
+		}
+		index = 0;
+		//obenRechts
+		for (int i = 0; i < 7; i++) {
+			for (int j = res.length - 7; j < res.length; j++) {
+				res[i][j] = QRCode.orientation_mask[index];
+				index++;
+			}
+		}
+
+		index = 0;
+		//untenLinks
+		for (int i = res.length - 7; i < res.length; i++) {
+			for (int j = 0; j < 7; j++) {
+				res[i][j] = QRCode.orientation_mask[index];
+				index++;
+			}
+		}
+	}
+	
+	public static void placeTiming(boolean[][] data, Version version) {
+		boolean timing = true; //starts always in Black
+
+		//Vertical Timing
+		for (int i = 8; i < data.length - 8; i++) {
+			data[i][6] = timing;
+			timing = !timing;
+		}
+
+		timing = true;
+		//Horizonal Timing
+		for (int j = 8; j < data.length - 8; j++) {
+			data[6][j] = timing;
+			timing = !timing;
+		}
+	}
+	
+	public static void placeAlignment(boolean[][] data, Version version) {
+		int[] alligments = version.alignmentPositions();
+
+		for (int i: alligments){
+			for (int j: alligments){
+				if ((i == 6 && j == 6) || (i == 6 && j == alligments[alligments.length -1]) || (i == alligments[alligments.length-1] && j == 6)){
+					continue;
+				}
+				place_Alignment_Address(data,i,j);
+
+			}
+		}
+	}
+	
+	public static void placeVersionInformation(boolean[][] data, int versionInformation) {
+		boolean[] version_Block = new boolean[18];
+		for (int i = 0; i < 18; i++) {
+			version_Block[i] = (versionInformation & (1 << i)) != 0 ;
+		}
+
+			int index = 0;
+			for (int i = 0; i <= 5; i++) {
+				for (int j = data.length - 11; j < data.length - 8; j++) {
+					 data[i][j]= version_Block[index];
+					 data[j][i]= version_Block[index];
+					 index++;
+				}
+			}
+
+	}
+	
+	public static boolean[][] createBlankForVersion(Version version) {
+		boolean[][] res = new boolean[version.size()][version.size()];
+		if (version.number() > 6){
+			placeVersionInformation(res,VersionInformation.forVersion(version));
+		}
+
+		res[res.length-8][8] = true; //Dark Module
+		placeOrientation(res,version);
+		placeTiming(res,version);
+		placeAlignment(res,version);
+		return res;
+	}
+
+
+	private static void place_Alignment_Address(boolean[][] data,int y,int x) {
+		int new_i = y - 2;
+		int new_j = x - 2;
+		int index = 0;
+		for (int i = new_i; i < y + 3; i++) {
+			for (int j = new_j; j < x + 3; j++) {
+				data[i][j] = QRCode.alignment_mask[index];
+				index++;
+			}
+		}
+	}
+
+	public static void check_version_blocks(boolean[][] data) {
+
+
+	}
+
+
+
+}

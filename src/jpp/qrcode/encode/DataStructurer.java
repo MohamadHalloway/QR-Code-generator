@@ -1,0 +1,150 @@
+package jpp.qrcode.encode;
+
+import jpp.qrcode.DataBlock;
+import jpp.qrcode.ErrorCorrectionGroup;
+import jpp.qrcode.ErrorCorrectionInformation;
+import jpp.qrcode.reedsolomon.ReedSolomon;
+
+public class DataStructurer {
+	public static DataBlock[] split(byte[] data, ErrorCorrectionInformation ecInformation) {
+		DataBlock[] result = new DataBlock[ecInformation.totalBlockCount()];
+		int anzahlBloecke = ecInformation.totalBlockCount();
+		ErrorCorrectionGroup[] ecGroup = ecInformation.correctionGroups();
+
+		byte[][] dataBytes = new byte[anzahlBloecke][];
+		//Init databytes
+		int index = 0;
+		for (int i = 0; i < ecGroup.length; i++) {
+			for (int j = 0; j < ecGroup[i].blockCount(); j++) {
+				dataBytes[index] = new byte[ecGroup[i].dataByteCount()];
+				index++;
+			}
+		}
+		index = 0;
+		for (int i = 0; i < ecGroup[0].blockCount(); i++) {
+			for (int j = 0; j < ecGroup[0].dataByteCount(); j++) {
+				dataBytes[i][j] = data[index];
+				index++;
+			}
+		}
+		if (ecGroup.length > 1){
+			for (int i = ecGroup[0].blockCount(); i < anzahlBloecke; i++) {
+				for (int j = 0; j < ecGroup[1].dataByteCount(); j++) {
+					dataBytes[i][j] = data[index];
+					index++;
+				}
+			}
+		}
+
+		//correctionBytes
+		int anzahlCorrectionBytes = ecInformation.correctionBytesPerBlock();
+		byte[][] correctionBytes = new byte[anzahlBloecke][anzahlCorrectionBytes];
+		for (int i = 0 ; i < anzahlBloecke; i++) {
+			correctionBytes[i] = ReedSolomon.calculateCorrectionBytes(dataBytes[i],anzahlCorrectionBytes);
+
+		}
+
+
+//		ErrorCorrectionGroup[] ecGroup = ecInformation.correctionGroups();
+//		int anzahlBlocke2 = 0;
+//		if (ecGroup.length > 1){
+//			anzahlBlocke2 = ecGroup[1].blockCount();
+//		}
+//		int anzahlData = ecInformation.totalDataByteCount();
+//		//Init databytes
+//		byte[][] dataBytes = new byte[anzahlBloecke][];
+//		int index = 0;
+//		for (int i = 0; i < ecGroup.length; i++) {
+//			for (int j = 0; j < ecGroup[i].blockCount(); j++) {
+//				dataBytes[index] = new byte[ecGroup[i].dataByteCount()];
+//				index++;
+//			}
+//		}
+//		//databytes
+//		index = 0;
+//		for (int i = 0; i < anzahlData - anzahlBlocke2; i += anzahlBloecke) {
+//			for (int j = 0; j < anzahlBloecke; j++) {
+//				 data[i+j] = dataBytes[j][index];
+//			}
+//			index++;
+//		}
+//			//if more than Group
+//			if (ecGroup.length > 1){
+//				index = anzahlData - ecGroup[1].blockCount();
+//				for (int i = ecGroup[0].blockCount(); i < dataBytes.length; i++) {
+//					data[index] = dataBytes[i][dataBytes[i].length - 1];
+//					index++;
+//				}
+//			}
+//
+//		//correctionBytes
+//		int anzahlCorrectionBytes = ecInformation.correctionBytesPerBlock();
+//		byte[][] correctionBytes = new byte[anzahlBloecke][anzahlCorrectionBytes];
+//		for (int i = 0 ; i < anzahlBloecke; i++) {
+//			correctionBytes[i] = ReedSolomon.calculateCorrectionBytes(dataBytes[i],anzahlCorrectionBytes);
+//
+//		}
+		for (int i = 0; i < anzahlBloecke; i++) {
+			result[i] = new DataBlock(dataBytes[i],correctionBytes[i]);
+		}
+		return result;
+
+	}
+	
+	public static byte[] interleave(DataBlock[] blocks, ErrorCorrectionInformation ecBlocks) {
+		byte[] result = new byte[ecBlocks.totalByteCount()];
+		int blocksLength = blocks.length;
+		byte[][] blocksData = new byte[blocksLength][];
+		ErrorCorrectionGroup[] ecGroup = ecBlocks.correctionGroups();
+		for (int i = 0; i < blocksLength; i++) {
+			blocksData[i] = blocks[i].dataBytes();
+		}
+//		int anzhalBlocks2 = 0;
+//		if (ecGroup.length > 1){
+//			anzhalBlocks2 = ecGroup[1].blockCount();
+//		}
+		int anzahlData = ecBlocks.lowerDataByteCount();
+		int index = 0;
+		for (int i = 0; i < anzahlData; i++) {
+			for (int j = 0; j < blocksLength; j++) {
+				result[index] = blocksData[j][i];
+				index++;
+			}
+		}
+
+			//if more than Group
+			if (ecGroup.length > 1){
+//				index = anzahlData - ecGroup[1].blockCount();
+				for (int i = ecGroup[0].blockCount(); i < blocksLength; i++) {
+					 result[index] = blocksData[i][blocksData[i].length - 1];
+					index++;
+				}
+			}
+
+		//correctionBytes
+		int anzahlCorrectionBytes = ecBlocks.correctionBytesPerBlock();
+		byte[][] correctionBytes = new byte[blocksLength][anzahlCorrectionBytes];
+		for (int i = 0; i < blocksLength; i++) {
+			correctionBytes[i] = blocks[i].correctionBytes();
+		}
+
+		for (int i = 0 ; i < anzahlCorrectionBytes; i++) {
+			for (int j = 0; j < blocksLength; j++) {
+				result[index] = correctionBytes[j][i];
+				index++;
+			}
+
+		}
+		return result;
+	}
+	
+	public static byte[] structure(byte[] data, ErrorCorrectionInformation ecBlocks) {
+		int n = ecBlocks.totalDataByteCount();
+		if (data.length != n){
+			throw new IllegalArgumentException("Anzahl ist nicht wie erwartet (Datastructurer)");
+		}
+		DataBlock[] dataBlocks = split(data,ecBlocks);
+		byte[] result = interleave(dataBlocks,ecBlocks);
+		return result;
+	}
+}

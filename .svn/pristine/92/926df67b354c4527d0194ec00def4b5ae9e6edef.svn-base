@@ -1,0 +1,31 @@
+package jpp.qrcode;
+
+public class QRCode {
+	public QRCode(boolean[][] matrix, Version version, MaskPattern pattern, ErrorCorrection correction) {
+		throw new IllegalStateException();
+	}
+	
+	public Version version() {
+		throw new IllegalStateException();
+	}
+	
+	public boolean[][] data() {
+		throw new IllegalStateException();
+	}
+	
+	public MaskPattern maskPattern() {
+		throw new IllegalStateException();
+	}
+	
+	public ErrorCorrection errorCorrection() {
+		throw new IllegalStateException();
+	}
+	
+	public String matrixToString() {
+		throw new IllegalStateException();
+	}
+	
+	public static QRCode createValidatedFromBooleans(boolean[][] data) throws InvalidQRCodeException {
+		throw new IllegalStateException();
+	}
+}

@@ -1,0 +1,7 @@
+package jpp.qrcode;
+
+public class MaskApplier {
+	public static void applyTo(boolean[][] data, MaskFunction mask, ReservedModulesMask reservedModulesMask) {
+		throw new IllegalStateException();
+	}
+}

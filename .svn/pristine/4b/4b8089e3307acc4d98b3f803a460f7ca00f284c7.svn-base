@@ -1,0 +1,21 @@
+package jpp.qrcode.encode;
+
+import jpp.qrcode.DataPositions;
+import jpp.qrcode.ReservedModulesMask;
+
+public class DataInserter {
+	public static void insert(boolean[][] target, ReservedModulesMask mask, byte[] data) {
+		DataPositions dataPositions = new DataPositions(mask);
+		int index = 0;
+		int n = 7;
+		do {
+			target[dataPositions.i()][dataPositions.j()] = (data[index] & (1 << n)) != 0;
+			if (n == 0){
+				n = 7;
+				index++;
+				continue;
+			}
+			n--;
+		}while (dataPositions.next());
+	}
+}

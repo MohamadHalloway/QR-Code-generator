@@ -1,0 +1,9 @@
+package jpp.qrcode.decode;
+
+import jpp.qrcode.ReservedModulesMask;
+
+public class DataExtractor {
+	public static byte[] extract(boolean[][] data, ReservedModulesMask mask, int byteCount) {
+		throw new IllegalStateException();
+	}
+}

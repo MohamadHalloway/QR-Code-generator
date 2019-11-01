@@ -1,0 +1,15 @@
+package jpp.qrcode;
+
+public class DataBlock {
+	public DataBlock(byte[] dataBytes, byte[] correctionBytes) {
+		throw new IllegalStateException();
+	}
+	
+	public byte[] dataBytes() {
+		throw new IllegalStateException();
+	}
+	
+	public byte[] correctionBytes() {
+		throw new IllegalStateException();
+	}
+}

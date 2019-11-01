@@ -1,0 +1,19 @@
+package jpp.qrcode;
+
+public class ReservedModulesMask {
+	public ReservedModulesMask(boolean[][] mask) {
+		throw new IllegalStateException();
+	}
+	
+	public boolean isReserved(int i, int j) {
+		throw new IllegalStateException();
+	}
+	
+	public int size() {
+		throw new IllegalStateException();
+	}
+	
+	public static ReservedModulesMask forVersion(Version version) {
+		throw new IllegalStateException();
+	}
+}

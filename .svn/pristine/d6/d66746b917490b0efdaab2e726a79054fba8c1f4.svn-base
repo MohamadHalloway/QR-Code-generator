@@ -1,0 +1,225 @@
+package jpp.qrcode;
+
+import jpp.qrcode.decode.DataDecoder;
+import jpp.qrcode.decode.DataDestructurer;
+import jpp.qrcode.decode.DataExtractor;
+import jpp.qrcode.decode.Decoder;
+import jpp.qrcode.encode.*;
+import jpp.qrcode.io.TextReader;
+import jpp.qrcode.io.TextWriter;
+import jpp.qrcode.reedsolomon.ReedSolomonException;
+
+import java.io.*;
+import java.util.Arrays;
+
+public class main {
+    public static void main(String[] args) throws IOException, ReedSolomonException {
+        int[][] matrix = {
+                {1,1,1,1,1,1,1,0,0,0,0,0,0,1,0,0,1,0,1,1,1,1,1,1,1},
+                {1,0,0,0,0,0,1,0,1,0,0,1,0,0,1,1,1,0,1,0,0,0,0,0,1},
+                {1,0,1,1,1,0,1,0,0,1,0,0,1,1,1,0,1,0,1,0,1,1,1,0,1},
+                {1,0,1,1,1,0,1,0,0,0,1,0,1,1,1,1,0,0,1,0,1,1,1,0,1},
+                {1,0,1,1,1,0,1,0,1,1,0,0,0,0,1,0,0,0,1,0,1,1,1,0,1},
+                {1,0,0,0,0,0,1,0,0,1,1,0,1,1,0,0,0,0,1,0,0,0,0,0,1},
+                {1,1,1,1,1,1,1,0,1,0,1,0,1,0,1,0,1,0,1,1,1,1,1,1,1},
+                {0,0,0,0,0,0,0,0,0,1,1,0,0,1,1,0,1,0,0,0,0,0,0,0,0},
+                {1,0,1,0,1,0,1,0,0,0,0,1,1,0,1,1,1,0,0,0,1,0,0,1,0},
+                {1,0,1,0,1,0,0,0,1,1,1,1,0,0,1,1,0,1,1,1,0,1,0,1,0},
+                {0,0,0,1,1,1,1,1,1,1,0,1,0,1,0,0,0,1,0,1,0,1,0,1,1},
+                {1,1,1,0,0,1,0,0,1,0,1,0,0,0,0,1,1,1,0,1,1,1,0,1,1},
+                {1,0,1,1,0,1,1,0,1,0,1,1,1,0,0,1,0,1,1,0,0,0,0,0,0},
+                {0,1,1,1,0,0,0,1,1,1,1,1,1,1,0,0,1,0,0,1,0,1,1,0,0},
+                {1,0,0,0,0,0,1,1,0,1,1,1,1,0,1,0,0,1,1,0,0,1,1,1,1},
+                {0,1,1,0,1,1,0,1,1,0,0,0,1,1,1,1,1,0,1,1,1,0,0,1,1},
+                {1,0,1,0,1,0,1,0,1,0,1,1,0,0,1,0,1,1,1,1,1,1,1,0,0},
+                {0,0,0,0,0,0,0,0,1,0,1,1,0,0,1,1,1,0,0,0,1,0,1,0,1},
+                {1,1,1,1,1,1,1,0,0,0,1,0,0,1,0,1,1,0,1,0,1,1,1,0,1},
+                {1,0,0,0,0,0,1,0,0,1,1,1,0,0,0,0,1,0,0,0,1,0,0,0,1},
+                {1,0,1,1,1,0,1,0,1,0,1,0,1,0,0,0,1,1,1,1,1,0,0,1,0},
+                {1,0,1,1,1,0,1,0,0,0,0,1,1,1,0,1,1,0,0,0,1,1,0,1,0},
+                {1,0,1,1,1,0,1,0,1,0,0,1,1,0,1,1,0,0,1,1,1,1,1,0,1},
+                {1,0,0,0,0,0,1,0,0,0,0,0,1,1,1,1,0,1,1,0,1,0,0,1,0},
+                {1,1,1,1,1,1,1,0,1,0,0,1,0,0,1,1,1,1,0,0,0,1,0,1,1}};
+
+
+        boolean[][] data = Helper.integerArray2booleanArray(matrix);
+//        for (int i = 0; i < data.length; i++) {
+//            System.out.println(Arrays.toString(data[i]));
+//        }
+        QRCode qrCode = QRCode.createValidatedFromBooleans(data);
+//        Version version = qrCode.version();
+//        ErrorCorrection errorCorrection = qrCode.errorCorrection();
+//        MaskPattern maskPattern = qrCode.maskPattern();
+//        ErrorCorrectionInformation errorCorrectionInformation = version.correctionInformationFor(errorCorrection);
+//        int byteCount = errorCorrectionInformation.totalByteCount();
+//        ReservedModulesMask reservedModulesMask = ReservedModulesMask.forVersion(version);
+
+
+//-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+        //Test_DataPositions
+//        ReservedModulesMask reservedModulesMask = ReservedModulesMask.forVersion(Version.fromNumber(1));
+//        boolean[][] testMask = new boolean[reservedModulesMask.size()][reservedModulesMask.size()];
+//        for (int i = 0; i < testMask.length; i++) {
+//            for (int j = 0; j < testMask.length; j++) {
+//                testMask[i][j] = reservedModulesMask.isReserved(i,j);
+//            }
+//        }
+//
+//        int[][] testArray = Helper.booleanArray2integerArray(testMask);
+//        DataPositions dataPositions = new DataPositions(reservedModulesMask);
+//        int n = 1;
+//        for (int i = 0; i < reservedModulesMask.size(); i++) {
+//            for (int j = 0; j < reservedModulesMask.size(); j++) {
+//                if (dataPositions.next()){
+////                    testArray[dataPositions.i()][dataPositions.j()] = "[i: " + dataPositions.i() + ",j: " + dataPositions.j() + "]";
+//                        testArray[dataPositions.i()][dataPositions.j()] = n++;
+//                }
+//            }
+//        }
+//        for (int i = 0; i < testArray.length; i++) {
+//            for (int j = 0; j < testArray[i].length; j++) {
+//                if (testArray[i][j] < 10){
+//                    System.out.print("   " + testArray[i][j]);
+//                } else if (testArray[i][j] < 100){
+//                    System.out.print("  " + testArray[i][j]);
+//                }else {
+//                    System.out.print(" " + testArray[i][j]);
+//                }
+//            }
+//            System.out.println();
+//        }
+//-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//    //Test TextReader
+//        File file = new File("examples/invalid/noBottomLeftCorner.txt");
+//        InputStream in = new FileInputStream(file);
+//        boolean[][] boo = TextReader.read(in);
+//        int[][] data = Helper.booleanArray2integerArray(boo);
+//        for (int i = 0; i < data.length; i++) {
+//            System.out.println(Arrays.toString(data[i]));
+//        }
+//      //Test DataExtractor
+//        byte[] information = DataExtractor.extract(data,reservedModulesMask,byteCount);
+//        StringBuilder temp = new StringBuilder();
+//        int index = 0;
+//        for (byte info: information){
+//            for (int i = 0; i < 8; i++) {
+//                index = (byte) ((1 << i) & info);
+//                if (index == 0){
+//                    temp.append(0);
+//                }
+//                else {
+//                    temp.append(1);
+//                }
+//            }
+//            temp.append("\n\n");
+//        }
+//        System.out.println(temp);
+//-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//      //Test TextReader
+//        try {
+//            FileOutputStream f = null;
+//            f = new FileOutputStream("examples/TestTextWrite.txt");
+//            File f2=new File("examples/Hallo_L.txt");
+//            FileInputStream fileReader= new FileInputStream(f2);
+//            boolean[][] test = TextReader.read(fileReader);
+//            TextWriter.write(f,test);
+//        } catch (IOException e) {
+//            System.out.println("Datei konnte nicht erstellt werden! (TestTextWriter)");
+//        }
+//      Test DataDestructure only one Group
+//        byte[] information = DataExtractor.extract(data,reservedModulesMask,byteCount);
+//        DataBlock[] dataBlocks = DataDestructurer.deinterleave(information,errorCorrectionInformation);
+//-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+//      //Test DataDestructure 2Groups
+//        File f=new File("examples/WueCampus_H.txt");
+////        try{
+//            FileInputStream fileReader= new FileInputStream(f);
+//            boolean[][] booleans = TextReader.read(fileReader);
+//            ErrorCorrection errorCorrection = ErrorCorrection.HIGH;
+//            QRCode qrcode = QRCode.createValidatedFromBooleans(booleans);
+//            ErrorCorrectionInformation errorCorrectionInformation = qrcode.version().correctionInformationFor(errorCorrection);
+//            byte[] data= DataExtractor.extract(booleans, ReservedModulesMask.forVersion(qrcode.version()),qrcode.version().totalByteCount());
+//            DataBlock[] dataBlocks = null;
+//
+//            byte[] result = testdestructure( data,  errorCorrectionInformation);
+//            dataBlocks=testDeinterleave(result,errorCorrectionInformation);
+//            result = join(dataBlocks,errorCorrectionInformation);
+//            System.out.println(Arrays.toString(result));
+//-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+        //Test DataDecoder
+
+//        //Big   Version = 10; HIGH
+//        byte[] bytes = {0b01000000, (byte) 0b00000110, (byte) 0b00110011, (byte) 0b00000011, (byte) 0b00010011, (byte) 0b00100011, (byte) 0b00110011, (byte) 0b01000011, (byte) 0b01010011, (byte) 0b01100011, (byte) 0b01110011, (byte) 0b10000011, (byte) 0b10010011, (byte) 0b00000011, (byte) 0b00010011, (byte) 0b00100011, (byte) 0b00110011, (byte) 0b01000011, (byte) 0b01010011, (byte) 0b01100011, (byte) 0b01110011, (byte) 0b10000011, (byte) 0b10010011, (byte) 0b00000011, (byte) 0b00010011, (byte) 0b00100011, (byte) 0b00110011, (byte) 0b01000011, (byte) 0b01010011, (byte) 0b01100011, (byte) 0b01110011, (byte) 0b10000011, (byte) 0b10010011, (byte) 0b00000011, (byte) 0b00010011, (byte) 0b00100011, (byte) 0b00110011, (byte) 0b01000011, (byte) 0b01010011, (byte) 0b01100011, (byte) 0b01110011, (byte) 0b10000011, (byte) 0b10010011, (byte) 0b00000011, (byte) 0b00010011, (byte) 0b00100011, (byte) 0b00110011, (byte) 0b01000011, (byte) 0b01010011, (byte) 0b01100011, (byte) 0b01110011, (byte) 0b10000011, (byte) 0b10010011, (byte) 0b00000011, (byte) 0b00010011, (byte) 0b00100011, (byte) 0b00110011, (byte) 0b01000011, (byte) 0b01010011, (byte) 0b01100011, (byte) 0b01110011, (byte) 0b10000011, (byte) 0b10010011, (byte) 0b00000011, (byte) 0b00010011, (byte) 0b00100011, (byte) 0b00110011, (byte) 0b01000011, (byte) 0b01010011, (byte) 0b01100011, (byte) 0b01110011, (byte) 0b10000011, (byte) 0b10010011, (byte) 0b00000011, (byte) 0b00010011, (byte) 0b00100011, (byte) 0b00110011, (byte) 0b01000011, (byte) 0b01010011, (byte) 0b01100011, (byte) 0b01110011, (byte) 0b10000011, (byte) 0b10010011, (byte) 0b00000011, (byte) 0b00010011, (byte) 0b00100011, (byte) 0b00110011, (byte) 0b01000011, (byte) 0b01010011, (byte) 0b01100011, (byte) 0b01110011, (byte) 0b10000011, (byte) 0b10010011, (byte) 0b00000011, (byte) 0b00010011, (byte) 0b00100011, (byte) 0b00110011, (byte) 0b01000011, (byte) 0b01010011, (byte) 0b01100011, (byte) 0b01110011, (byte) 0b10000000, (byte) 0b11101100, (byte) 0b00010001, (byte) 0b11101100, (byte) 0b00010001, (byte) 0b11101100, (byte) 0b00010001, (byte) 0b11101100, (byte) 0b00010001, (byte) 0b11101100, (byte) 0b00010001, (byte) 0b11101100, (byte) 0b00010001, (byte) 0b11101100, (byte) 0b00010001, (byte) 0b11101100, (byte) 0b00010001, (byte) 0b11101100, (byte) 0b00010001, (byte) 0b11101100, (byte) 0b00010001};
+//        Version version = Version.fromNumber(10);
+//        ErrorCorrection errorCorrection = ErrorCorrection.HIGH;
+//        String result = DataDecoder.decodeToString(bytes,version,errorCorrection);
+//        System.out.println(result);
+
+
+//        //FuzzTest  Version = 10; QUARTILE
+//        byte[] bytes = {0b01000000, (byte) 0b00001001, (byte) 0b01100010, (byte) 0b01000110, (byte) 0b01010110, (byte) 0b00110101, (byte) 0b00110010, (byte) 0b01010011, (byte) 0b00110110, (byte) 0b11010010, (byte) 0b10000101, (byte) 0b01000101, (byte) 0b10100111, (byte) 0b10000010, (byte) 0b11000101, (byte) 0b10000111, (byte) 0b00000111, (byte) 0b11000100, (byte) 0b10000101, (byte) 0b01010100, (byte) 0b01100110, (byte) 0b01000110, (byte) 0b01000110, (byte) 0b01000010, (byte) 0b00110011, (byte) 0b01110110, (byte) 0b00110011, (byte) 0b01000100, (byte) 0b01010101, (byte) 0b10000111, (byte) 0b01110101, (byte) 0b01110010, (byte) 0b00010100, (byte) 0b11100101, (byte) 0b10110101, (byte) 0b00010010, (byte) 0b01100101, (byte) 0b01000010, (byte) 0b10110101, (byte) 0b11110100, (byte) 0b11100011, (byte) 0b00110011, (byte) 0b10100101, (byte) 0b10100011, (byte) 0b11000010, (byte) 0b00010011, (byte) 0b10010101, (byte) 0b01000111, (byte) 0b11100101, (byte) 0b00110011, (byte) 0b00110011, (byte) 0b11100110, (byte) 0b11010010, (byte) 0b10010101, (byte) 0b10010011, (byte) 0b10000011, (byte) 0b11110111, (byte) 0b10000011, (byte) 0b01100011, (byte) 0b11010110, (byte) 0b01110011, (byte) 0b01000010, (byte) 0b00010100, (byte) 0b01110110, (byte) 0b01010101, (byte) 0b11010010, (byte) 0b00110100, (byte) 0b00100111, (byte) 0b10010010, (byte) 0b11100100, (byte) 0b11000101, (byte) 0b01010110, (byte) 0b00100100, (byte) 0b01100111, (byte) 0b01100111, (byte) 0b11000111, (byte) 0b01110011, (byte) 0b11000101, (byte) 0b11100111, (byte) 0b11010100, (byte) 0b01000111, (byte) 0b00000110, (byte) 0b11010100, (byte) 0b10000011, (byte) 0b10110101, (byte) 0b00000011, (byte) 0b01110111, (byte) 0b01000010, (byte) 0b01010011, (byte) 0b01000110, (byte) 0b11100011, (byte) 0b11110110, (byte) 0b00100101, (byte) 0b00000011, (byte) 0b00110111, (byte) 0b10010101, (byte) 0b10100111, (byte) 0b10000011, (byte) 0b11010100, (byte) 0b00100100, (byte) 0b11010011, (byte) 0b01100100, (byte) 0b00000111, (byte) 0b10010110, (byte) 0b11000011, (byte) 0b10000101, (byte) 0b01000010, (byte) 0b10100101, (byte) 0b11110110, (byte) 0b00100111, (byte) 0b01000110, (byte) 0b01000111, (byte) 0b11010111, (byte) 0b10000011, (byte) 0b10010110, (byte) 0b10100111, (byte) 0b11100110, (byte) 0b00100110, (byte) 0b11010100, (byte) 0b11100100, (byte) 0b11100110, (byte) 0b01000110, (byte) 0b11000110, (byte) 0b11100101, (byte) 0b10100011, (byte) 0b11100010, (byte) 0b00010100, (byte) 0b00110011, (byte) 0b00110110, (byte) 0b00010100, (byte) 0b01100011, (byte) 0b10000100, (byte) 0b00110010, (byte) 0b10000100, (byte) 0b01000100, (byte) 0b01110111, (byte) 0b01100110, (byte) 0b11100101, (byte) 0b10010100, (byte) 0b01100101, (byte) 0b00100011, (byte) 0b10110011, (byte) 0b10110111, (byte) 0b10010010, (byte) 0b01010011, (byte) 0b01110110, (byte) 0b10010010, (byte) 0b10110110, (byte) 0b10110101, (byte) 0b11000101, (byte) 0b01010100, (byte) 0b11110100, (byte) 0b00000000, (byte) 0b11101100};
+//        Version version = Version.fromNumber(10);
+//        ErrorCorrection errorCorrection = ErrorCorrection.QUARTILE;
+//        String result = DataDecoder.decodeToString(bytes,version,errorCorrection);
+//        System.out.println(result);
+//-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//        //Test Decoder
+//        System.out.println(Decoder.decodeToString(qrCode));
+//-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+        //Test DataEncoder
+//        DataEncoderResult dataEncoderResult = DataEncoder.encodeForCorrectionLevel("Ssi<Z,xILp\"~<3+G1{ETRF;6K>GWuf%Z366uZMjZ{U~n6nOi>JU84Y3&X:o|$L'Mv7w?D54FQLtk^}c0$?P*f5,m63Yv~L[SR$2EdPzwbhT0f-$&4:&}OAoC#D-7X7U\"&){pI>l\\BDSoyjkZ:t{eqO<wYVH(<?JR:Clw?M{?1Ujcr|)D4qP1grO\\1-g3Zci|*`", ErrorCorrection.LOW);
+//        DataEncoderResult dataEncoderResult = DataEncoder.encodeForCorrectionLevel("(94Hr\\0ri3gg,(6h_3,Xp]Lj:d+!4y2%X$N*)|J9v[\"C{QNSy4~[#@@DLxy7Sj\",HI8j^D>={iRnnu822!HZcOLPnIZ1F#WN(J^a/Xx9lK+6mU\"I6z%i}yHyik1[WMW^?=!~$Z?)O99-lGI*U<[6<u,O@m=IR5e7=b{@%>jH[r)LeJ,78`\\}@sJvYyE3WRp31p,)NG/MhfO6xsg\"$^I3kstx.wJ24xCBY/!S/|cp_3Kya=(\\T%3e!:K%g7QJ'HF#lKsrX3v]v7>/3GB;G1~OPnf^@w@[CiqVn@4m;^VE.n>0m/4#(,Bq\\y]Ph?a|[(Skr&64F|$P9QgT).^kRhcESqbx8v/wGviD,w(gSE}RZ>vq0/ej/f,Y`Cp`]j{0R+U*?8?+@^l5Bq&+Os$e{zfJ(y>i&3sh,$+||5yH+p=u|2ZYL3Cp?$7vItsf(G;av<,}<(41d_8e\\__gd'`&MBC2TkKpg$bstFI=<-*f'vOo0.m$qJVHXj+:Z1h->Sv;[_f=!&>dQ\\*k,X>X!o6:HuepU2MUgXamk\\RrJ<Ax&\"sN4-@i^U.wtM).BaE<E+\\CvAzW*W/keScYkwo/*5Vn$K", ErrorCorrection.HIGH);
+//        DataEncoderResult dataEncoderResult = DataEncoder.encodeForCorrectionLevel("012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678101234567891012345678",ErrorCorrection.HIGH);
+//        System.out.println(Arrays.toString(dataEncoderResult.bytes()));
+//        System.out.println(Helper.byteInBinary(dataEncoderResult.bytes()));
+//        System.out.println(Helper.byteInBinary(new String("Programmieren ist toll").getBytes()));
+//-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+        //Test DataStructurer
+//        DataEncoderResult dataEncoderResult = DataEncoder.encodeForCorrectionLevel("012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678101234567891012345678",ErrorCorrection.HIGH);
+//        DataEncoderResult dataEncoderResult = DataEncoder.encodeForCorrectionLevel("Hallo Welt!",ErrorCorrection.LOW);
+//        DataStructurer.structure(dataEncoderResult.bytes(),dataEncoderResult.version().correctionInformationFor(ErrorCorrection.HIGH));
+
+//-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//        //Test PatternPlacer
+//        Version version = Version.fromNumber(2);
+//        boolean[][] res = PatternPlacer.createBlankForVersion(version);
+//        System.out.println(Helper.intQRCodeZeichnen(Helper.booleanArray2integerArray(res)));
+//-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+        //Test DataInserter
+
+//-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+        //Test MaskSelector
+//        DataEncoderResult dataEncoderResult = DataEncoder.encodeForCorrectionLevel("Hallo Welt!",ErrorCorrection.LOW);
+//        Version version = Version.fromNumber(1);
+//        byte[] daten = DataStructurer.structure(dataEncoderResult.bytes(),version.correctionInformationFor(ErrorCorrection.LOW));
+//        ReservedModulesMask reservedModulesMask = ReservedModulesMask.forVersion(version);
+//        DataInserter.insert(res,reservedModulesMask,daten);
+////        MaskApplier.applyTo(res,MaskPattern.MASK010.maskFunction(),reservedModulesMask);
+//        MaskSelector.placeFormatInformation(res,10975);
+
+        System.out.println(MaskSelector.calculatePenaltyPattern(data));
+
+//        QRCode qrCode = QRCode.createValidatedFromBooleans(Helper.integerArray2booleanArray(matrix));
+//        System.out.println(qrCode.matrixToString());
+//        System.out.println(Helper.intQRCodeZeichnen(Helper.booleanArray2integerArray(res)));
+    }
+
+
+
+
+
+
+
+
+    private static byte[] testdestructure(byte[] data, ErrorCorrectionInformation correctionInformation) throws ReedSolomonException {
+        return DataDestructurer.destructure(data,correctionInformation);
+    }
+    private static DataBlock[] testDeinterleave(byte[] data, ErrorCorrectionInformation correctionInformation){
+        return DataDestructurer.deinterleave(data,correctionInformation);
+    }
+    private static byte[] join(DataBlock[] blocks, ErrorCorrectionInformation correctionInformation){
+        return  DataDestructurer.join(blocks,correctionInformation);
+    }
+}

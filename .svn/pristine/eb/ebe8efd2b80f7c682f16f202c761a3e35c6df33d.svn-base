@@ -1,0 +1,9 @@
+package jpp.qrcode.decode;
+
+import jpp.qrcode.QRCode;
+
+public class Decoder {
+	public static String decodeToString(QRCode qrCode) {
+		throw new IllegalStateException();
+	}
+}
